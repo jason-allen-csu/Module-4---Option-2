@@ -1,19 +1,15 @@
 import java.util.Scanner;
-
 public class GradeStatistics {
 	public static void main(String[] args) {
 		
 		Scanner scnr = new Scanner(System.in);
-		
-		int classCount = 10;
-		double[] classGrade = new double[classCount];
 		double sumGrade = 0.0;
 		double avgGrade;
 		double maxGrade = Double.MIN_VALUE;  // Sets maximum Grade to the lowest possible value of double
 		double minGrade = Double.MAX_VALUE;  // Sets minimum Grade to the highest possible value of double
 		
 		// Reading Grade 
-		for (int i=0; i < classCount; ++i) {
+		for (int i=0; i < 10; ++i) {
 			System.out.print("Enter grade of Student " +(i+1) + ":");
 			
 			if (!scnr.hasNextDouble() && !scnr.hasNextInt()) {
@@ -23,39 +19,28 @@ public class GradeStatistics {
 				continue;
 			}
 			
-			// Convert to Double
-			if (scnr.hasNextDouble()) 
-				classGrade[i] = scnr.nextDouble();
-			else if (scnr.hasNextInt())
-				classGrade[i] = (double) scnr.nextInt();
+			double grade = scnr.nextDouble();			
 			
 			// Re entering Negative grades entered
-			if (classGrade[i] < 0) {
+			if (grade < 0) {
 				System.out.println("Negative grades not allowed. Re-enter");
 				i-- ;
 				continue;
 			}
 			
 			// Calculate Sum of all grades
-			sumGrade = sumGrade + classGrade[i];
+			sumGrade = sumGrade + grade;
 			
 			// Determine Max Grade
-			if (classGrade[i] > maxGrade)
-				maxGrade = classGrade[i];
+			if (grade > maxGrade)
+				maxGrade = grade;
 			
 			// Determine Min Grade
-			if (classGrade[i] < minGrade)
-				minGrade = classGrade[i];
+			if (grade < minGrade)
+				minGrade = grade;
 		}	
-		
 		// Calculate Average
-		avgGrade = sumGrade / classCount;
-		
-		// Class Grade Display
-		System.out.println("\nGrade of " + classCount + " Students are:\n" );
-		for (int i=0; i < classCount; ++i) {
-			System.out.print("\t" + classGrade[i]);
-		}
+		avgGrade = sumGrade / 10;
 		
 		// Class Statistics Display
 		System.out.println("\nClass Grade Statistics is as follows:");
